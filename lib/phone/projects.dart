@@ -146,7 +146,7 @@ class ProjectCard extends StatelessWidget {
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   launchUrlFunc(url, context);
                 },

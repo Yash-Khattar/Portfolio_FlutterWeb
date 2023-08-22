@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/const.dart';
+import 'package:portfolio/homeScreen.dart';
+import 'package:portfolio/utils.dart';
 
 class HeroWidget extends StatelessWidget {
-  const HeroWidget({super.key});
-
+  const HeroWidget({super.key, required this.burstParicles});
+  final VoidCallback burstParicles;
   @override
   Widget build(BuildContext context) {
     const double radius = 24;
@@ -73,14 +75,19 @@ class HeroWidget extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Flexible(
-              child: Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: klavenderColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(radius),
-                topRight: Radius.circular(radius),
+              child: InkWell(
+            onTap: burstParicles,
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: klavenderColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(radius),
+                  topRight: Radius.circular(radius),
+                ),
               ),
+              child: Center(child: Text("Flutter")),
             ),
           )),
         ],
