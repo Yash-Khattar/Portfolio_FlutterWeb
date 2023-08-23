@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //burst particles
   burstParticles() {
     particles.clear();
-    int count = Random().nextInt(25).clamp(7, 25);
+    int count = Random().nextInt(25).clamp(10, 25);
     for (var i = 0; i < count; i++) {
       Particle p = Particle();
       p.position = PVector(boxSize.center.dx, 0);
@@ -101,7 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
       boxCollision(pt);
 
-      if (pt.velocity.y == 0.0) {
+      if (pt.velocity.y.ceil() == -1 &&
+          pt.position.y == boxSize.height - pt.radius) {
         particles.remove(pt);
       }
     });

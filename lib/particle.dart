@@ -12,5 +12,5 @@ class Particle {
   double mass = 10.0; //kg
   double radius = 10 / 100;
   double area = 0.0314;
-  double jumpFactor = -0.7;
+  double jumpFactor = -0.8;
 }
