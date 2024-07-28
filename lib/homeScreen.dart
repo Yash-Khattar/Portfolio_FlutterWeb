@@ -20,13 +20,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isTextVisible = false;
+  void toggleTextVisibility() {
+    setState(() {
+      isTextVisible = !isTextVisible;
+    });
+  }
+
   Offset pointer = const Offset(100, 100);
   final GlobalKey _boxkey = GlobalKey();
   Rect boxSize = Rect.zero;
   Random random = Random();
   List<Particle> particles = [];
   late Timer timer;
-  final double fps = 1 / 24;
+  final double fps = 1 / 60;
   final double gravity = 9.81, dragCof = 0.47, airDensity = 1.1644;
 
   @override
@@ -37,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    Future.delayed(
+        const Duration(milliseconds: 500), () => toggleTextVisibility());
     // getting the size of screen
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Size size = _boxkey.currentContext!.size!;
@@ -166,7 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("Yash Khattar", style: heading1),
+                            AnimatedOpacity(
+                              opacity: isTextVisible ? 1 : 0,
+                              duration: const Duration(milliseconds: 2000),
+                              child:
+                                  const Text("Yash Khattar", style: heading1),
+                            ),
                             SizedBox(height: 20),
                             Text(
                               "noun :/ Hola! I’m a Flutter App developer. Potterhead and 5SOS",
